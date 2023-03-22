@@ -1,6 +1,10 @@
 FROM centos
-LABEL maintainer="myname@somecompany.com"
-RUN dnf update -y
-RUN dnf install nginx -y
-EXPOSE 80
+RUN sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-Linux-*
+RUN sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-Linux-*
+RUN yum -y install epel-release
+RUN yum -y update
+RUN yum -y install nginx
+RUN mkdir -p /data/storage
+WORKDIR /data/storage
+EXPOSE 80/tcp
 CMD ["nginx", "-g", "daemon off;"]
