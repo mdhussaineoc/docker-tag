@@ -1,10 +1,5 @@
-name: ci
-
-on:
-  push:
-    branches:
-      - "main"
-
+name: docker-image
+on: push
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -28,4 +23,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/docker-tag:1.2
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/docker-tag:new
