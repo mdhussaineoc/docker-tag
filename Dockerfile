@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM RHEL
 LABEL maintainer="myname@somecompany.com"
 RUN apt-get update && apt-get upgrade -y
 RUN apt-get install nginx -y
